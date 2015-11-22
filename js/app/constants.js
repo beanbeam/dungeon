@@ -4,14 +4,15 @@ define({
     CAMERA_HEIGHT: 0.3,
 
     PARTY: {
-        MOVE_TIME: 250,
-        BUMP_TIME: 150,
-        ROTATE_TIME: 150,
+        MOVE_TIME: 325,
+        BUMP_TIME: 200,
+        ROTATE_TIME: 200,
 
         LIGHT: {
             COLOR: 0xffee99,
             INTENSITY: 0.8,
-            RADIUS: 4.5
+            RADIUS: 4.5,
+            OFFSET: {x: 0.2, y: 0.2, z: 0.1}
         }
     },
 

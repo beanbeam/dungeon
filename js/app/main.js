@@ -60,35 +60,10 @@ require(['lib/three', 'lib/tween', 'dungeon', 'relativeDir', 'constants'], funct
     scene.add(party.camera);
     
 
-    var keyActions = {
-        move_forward: function() {
-            party.moveRelative(RelativeDir.FORWARD);
-        },
-        move_right: function() {
-            party.moveRelative(RelativeDir.RIGHT);
-        },
-        move_left: function() {
-            party.moveRelative(RelativeDir.LEFT);
-        },
-        move_backward: function() {
-            party.moveRelative(RelativeDir.BACKWARD);
-        },
-        rotate_left: function() {
-            party.rotateCCW();
-        },
-        rotate_right: function() {
-            party.rotateCW();
-        }
-    };
-
     document.addEventListener('keydown', function(e) {
         var key = e.keyCode ? e.keyCode : e.which;
 
-        for (var action in keyActions) {
-            if (Const.KEYBINDINGS[action].indexOf(key) >= 0) {
-                keyActions[action]();
-            }
-        }
+        party.handleKey(key);
     });
 
     window.addEventListener('resize', function() {
@@ -102,6 +77,7 @@ require(['lib/three', 'lib/tween', 'dungeon', 'relativeDir', 'constants'], funct
         requestAnimationFrame(render);
         TWEEN.update();
 
+        party.tick();
         cube.rotation.x += 0.02;
         cube.rotation.y += 0.0187;
         renderer.render(scene, party.camera);

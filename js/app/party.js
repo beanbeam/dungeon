@@ -1,8 +1,30 @@
-define(['lib/three', 'lib/tween', 'util', 'constants', 'direction'], function(THREE, TWEEN, Util, Const, Direction) {
+define(['lib/three', 'lib/tween', 'util', 'constants', 'direction', 'relativeDir'], function(THREE, TWEEN, Util, Const, Direction, RelativeDir) {
     function Party(x, y, dir, collisions) {
         this.position = {x: x, y: y};
         this.direction = dir;
-        this.collidesWith = collisions
+        this.collidesWith = collisions;
+
+        var self = this;
+        this.keyActions = {
+            move_forward: {movement: true, action: function() {
+                self.moveRelative(RelativeDir.FORWARD);
+            }},
+            move_right: {movement: true, action: function() {
+                self.moveRelative(RelativeDir.RIGHT);
+            }},
+                move_left: {movement: true, action: function() {
+                self.moveRelative(RelativeDir.LEFT);
+            }},
+            move_backward: {movement: true, action: function() {
+                self.moveRelative(RelativeDir.BACKWARD);
+            }},
+            rotate_left: {movement: true, action: function() {
+                self.rotateCCW();
+            }},
+            rotate_right: {movement: true, action: function() {
+                self.rotateCW();
+            }}
+        };
         
         this.moving = false;
         this.nextMove = null;
@@ -11,8 +33,9 @@ define(['lib/three', 'lib/tween', 'util', 'constants', 'direction'], function(TH
         this.camera.position.y = Const.CAMERA_HEIGHT;
 
         this.light = new THREE.PointLight(Const.PARTY.LIGHT.COLOR, Const.PARTY.LIGHT.INTENSITY, Const.PARTY.LIGHT.RADIUS);
-        this.light.position.x = 0.25;
-        this.light.position.z = 0.25;
+        this.light.position.x = Const.PARTY.LIGHT.OFFSET.x;
+        this.light.position.z = Const.PARTY.LIGHT.OFFSET.y;
+        this.light.position.y = Const.PARTY.LIGHT.OFFSET.z;
 
         this.light.shadowBias = 0.01; // Prevents shadow lines at seams in walls. Not sure why. Side-effects?
         this.light.shadowCameraNear = 0.05;
@@ -41,10 +64,7 @@ define(['lib/three', 'lib/tween', 'util', 'constants', 'direction'], function(TH
         },
 
         move: function(dir) {
-            if (this.moving) {return;}
-            
             this.moving = true;
-
             var self = this;
             
             var newX = this.position.x + Direction.deltaX(dir);
@@ -87,9 +107,8 @@ define(['lib/three', 'lib/tween', 'util', 'constants', 'direction'], function(TH
         },
 
         rotateTo: function(dir) {
-            if (this.moving) {return;}
             this.moving = true;
-            
+
             this.direction = dir;
             var self = this;
 
@@ -112,6 +131,27 @@ define(['lib/three', 'lib/tween', 'util', 'constants', 'direction'], function(TH
 
         rotateCCW: function() {
             this.rotateTo(Direction.rotatedCCW(this.direction));
+        },
+
+        handleKey: function(key) {
+            for (var action in this.keyActions) {
+                if (Const.KEYBINDINGS[action].indexOf(key) >= 0) {
+                    var actionObject = this.keyActions[action];
+
+                    if (actionObject.movement && this.moving) {
+                        this.nextMove = action;
+                    } else {
+                        actionObject.action();
+                    }
+                }
+            }
+        },
+
+        tick: function() {
+            if (!this.moving && this.nextMove != null) {
+                this.keyActions[this.nextMove].action();
+                this.nextMove = null;
+            }
         }
     };
 
