@@ -1,6 +1,6 @@
 Dungeon
 =======
-A 3D dungeon crawler game, in the style of Dungeon Master, and especially Legend of Grimrock.
+A 3D dungeon crawler game, based on a bunch of games, particularly Legend of Grimrock.
 
 ![A spinning cube that does nothing useful!](/screenshot.png?raw=true)
 
