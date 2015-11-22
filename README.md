@@ -1,7 +1,8 @@
 Dungeon
 =======
-
 A 3D dungeon crawler game, in the style of Dungeon Master, and especially Legend of Grimrock.
+
+![A spinning cube that does nothing useful!](/screenshot.png?raw=true)
 
 Runs in browser using WebGL / THREE.js.
 
