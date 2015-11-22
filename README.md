@@ -19,6 +19,6 @@ Dependencies
 Eventually I will get a real dependency/build set up working, but until then, I've included
 a copy of the following required libraries, all of which areavailable under the MIT License:
 
-[Require.js](https://github.com/jrburke/requirejs),
-[Three.js](https://github.com/mrdoob/three.js),
-[Tween.js](https://github.com/tweenjs/tween.js),
++ [Require.js](https://github.com/jrburke/requirejs)
++ [Three.js](https://github.com/mrdoob/three.js)
++ [Tween.js](https://github.com/tweenjs/tween.js)
