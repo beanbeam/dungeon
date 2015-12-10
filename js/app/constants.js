@@ -4,7 +4,7 @@ define({
     CAMERA_HEIGHT: 0.3,
 
     PARTY: {
-        MOVE_TIME: 325,
+        MOVE_TIME: 300,
         BUMP_TIME: 200,
         ROTATE_TIME: 200,
 

@@ -36,20 +36,7 @@ require(['lib/three', 'lib/tween', 'dungeon', 'relativeDir', 'constants'], funct
     cube.position.z = 9;
     cube.add(new THREE.PointLight(0x66aac0, 0.6, 3));
     scene.add(cube);
-
-    var geometry = new THREE.PlaneGeometry(50, 50, 50, 50);
-    var material = new THREE.MeshPhongMaterial({color: 0x888888});
-    var floor = new THREE.Mesh(geometry, material);
-    floor.receiveShadow = true;
-    floor.rotation.x = Math.PI*-0.5
-    scene.add(floor);
     
-    var ceiling = new THREE.Mesh(geometry, material);
-    ceiling.receiveShadow = true;
-    ceiling.rotation.x = Math.PI*0.5;
-    ceiling.position.y = 1;
-    scene.add(ceiling);
-
     var ambientLight = new THREE.AmbientLight(0x08131c);
     scene.add(ambientLight);
 
