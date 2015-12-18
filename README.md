@@ -18,8 +18,17 @@ Nothing in the way of gameplay yet, just a small hardcoded area to wander around
 Dependencies
 ------------
 Eventually I will get a real dependency/build set up working, but until then, I've included
-a copy of the following required libraries, all of which areavailable under the MIT License:
+a copy of the following required libraries, all of which are available under the MIT License:
 
 + [Require.js](https://github.com/jrburke/requirejs)
 + [Three.js](https://github.com/mrdoob/three.js)
 + [Tween.js](https://github.com/tweenjs/tween.js)
+
+Getting it Running
+------------------
+Check it out [here](beanbeam.github.io/dungeon), or make the files available with a webserver:
+```
+cd {whatever}/dungeon
+python -m SimpleHTTPServer
+```
+Then just connect to the server, `localhost:8000` if you ran the above command.
