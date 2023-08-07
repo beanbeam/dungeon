@@ -90,6 +90,7 @@ require(['lib/three', 'lib/tween', 'dungeon', 'relativeDir', 'constants'], funct
 
     modelLoader.load('models/bare_bulb.json', function(obj) {
         textureLoader.load('textures/bare_bulb_color.png', function (color) {
+            color.magFilter = THREE.NearestFilter;
             textureLoader.load('textures/bare_bulb_emissive.png', function (emissive) {
                 var material = new THREE.MeshPhongMaterial({
                     map: color,
