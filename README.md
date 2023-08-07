@@ -26,9 +26,9 @@ a copy of the following required libraries, all of which are available under the
 
 Getting it Running
 ------------------
-Check it out [here](beanbeam.github.io/dungeon), or make the files available with a webserver:
+Check it out [here](https://beanbeam.github.io/dungeon), or make the files available with a webserver:
 ```
 cd {whatever}/dungeon
-python -m SimpleHTTPServer
+python3 -m http.server
 ```
 Then just connect to the server, `localhost:8000` if you ran the above command.
