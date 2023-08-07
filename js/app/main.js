@@ -2,13 +2,14 @@ require(['lib/three', 'lib/tween', 'dungeon', 'relativeDir', 'constants'], funct
     var scene = new THREE.Scene();
     var renderer = new THREE.WebGLRenderer();
 
+    renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.shadowMap.enabled = true;
     renderer.shadowMapSoft = true;
-    
+
     renderer.shadowCameraNear = 3;
     renderer.shadowCameraFar = 1000;
     renderer.shadowCameraFov = 50;
@@ -37,16 +38,16 @@ require(['lib/three', 'lib/tween', 'dungeon', 'relativeDir', 'constants'], funct
     var cubeLight = new THREE.PointLight(0x66aac0, 0.6, 3);
     cube.add(cubeLight);
     scene.add(cube);
-    
+
     var ambientLight = new THREE.AmbientLight(0x08131c);
     scene.add(ambientLight);
 
     party.light.castShadow = true;
     party.light.shadowMapWidth = 4096;
     party.light.shadowMapHeight = 4096;
-    
+
     scene.add(party.camera);
-    
+
 
     document.addEventListener('keydown', function(e) {
         var key = e.keyCode ? e.keyCode : e.which;
@@ -74,7 +75,7 @@ require(['lib/three', 'lib/tween', 'dungeon', 'relativeDir', 'constants'], funct
     }
 
     //render();
-    
+
     var lightCoords = [[3, 8],
                        [2, 2],
                        [5, 4],
@@ -83,10 +84,10 @@ require(['lib/three', 'lib/tween', 'dungeon', 'relativeDir', 'constants'], funct
                        [27, 7],
                        [24, 7],
                        [27, 4]];
-    
+
     var modelLoader = new THREE.JSONLoader();
     var textureLoader = new THREE.TextureLoader();
-    
+
     modelLoader.load('models/bare_bulb.json', function(obj) {
         textureLoader.load('textures/bare_bulb_color.png', function (color) {
             textureLoader.load('textures/bare_bulb_emissive.png', function (emissive) {
@@ -116,5 +117,5 @@ require(['lib/three', 'lib/tween', 'dungeon', 'relativeDir', 'constants'], funct
             });
         });
     });
-    
+
 });
